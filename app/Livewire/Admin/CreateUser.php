@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Livewire\Auth;
+namespace App\Livewire\Admin;
 
-use App\Models\User;
 use Livewire\Component;
-use Livewire\Attributes\Layout;
 use Illuminate\Validation\Rules;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 
-#[Layout('components.layouts.auth')]
-class Register extends Component
+
+class CreateUser extends Component
 {
     public string $name = '';
 
@@ -40,10 +38,13 @@ class Register extends Component
 
         $validated['password'] = Hash::make($validated['password']);
 
-        event(new Registered(($user = User::create($validated))));
+        event(new Registered((User::create($validated))));
 
-        Auth::login($user);
+        $this->redirect(route('admin.users', absolute: false), navigate: true);
+    }
 
-        $this->redirect(route('dashboard', absolute: false), navigate: true);
+    public function render()
+    {
+        return view('livewire.admin.create-user');
     }
 }

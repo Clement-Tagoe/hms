@@ -1,19 +1,31 @@
 <section class="w-full">
     <x-general-header title="Users" description="List of all users" />
 
-    <div class="flex py-4 justify-between">
+    <div class="flex flex-col space-y-3 md:space-y-0 md:flex-row py-4 justify-between">
         <div class="flex space-x-2 items-center">
             <flux:icon.users />
             <h3 class="font-bold text-lg">{{$users->count()}}</h3>
             <p class="text-gray-400">Total users</p>  
         </div>
 
-        <div class="w-96">                      
-            <flux:input icon="magnifying-glass" placeholder="Search users..." clearable/>
+        <div class="flex flex-col space-y-2 w-full md:w-lg md:space-y-0 md:flex-row md:space-x-2">
+            <div class="w-full md:w-96">                      
+                <flux:input icon="magnifying-glass" wire:model.live="search" placeholder="Search users..." clearable/>
+            </div>
+            <div>
+                <flux:select wire:model.change="role" name="role" id="role">
+                    <flux:select.option value="All Roles">All Roles</flux:select.option>
+                    @foreach ($roles as $role)
+                        <flux:select.option value="{{ $role->name }}">{{ $role->name }} </flux:select.option>
+                    @endforeach
+                </flux:select>
+            </div>
+            
         </div>
+        
 
         <div>
-            <flux:button icon="plus" variant="primary">Create New User</flux:button>
+            <flux:button icon="plus" :href="route('admin.create-user')" variant="primary">Create New User</flux:button>
         </div>
     </div>
 
@@ -27,7 +39,6 @@
                         <th class="px-4 py-3">Email</th>
                         <th class="px-4 py-3">Contact</th>
                         <th class="px-4 py-3">Role</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody class="bg-white dark:bg-zinc-800 divide-y text-zinc-700 dark:text-white/90">
@@ -44,6 +55,7 @@
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 {{ $user->role->name }}
+                            </td>
                         </tr>
                     @empty
                         <tr>

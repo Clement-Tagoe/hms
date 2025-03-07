@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\User;
+use App\Livewire\Admin\CreateUser;
+use App\Livewire\Admin\UsersIndex;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Appearance;
-use App\Livewire\Admin\UsersIndex;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
    Route::get('admin/users', UsersIndex::class)->name('admin.users');
+   Route::get('admin/create-user', CreateUser::class)->name('admin.create-user');
 });
 
 

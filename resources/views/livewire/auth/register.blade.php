@@ -46,10 +46,10 @@
         <!-- Role -->
         <flux:select wire:model="role_id" :label="__('Role')">
             <flux:select.option>Choose role...</flux:select.option>
-            <flux:select.option value=1>Super_Administrator</flux:select.option>
-            <flux:select.option value=2>Administrator</flux:select.option>
-            <flux:select.option value=3>Doctor</flux:select.option>
-            <flux:select.option value=4>Nurse</flux:select.option>
+            <flux:select.option value="1">Super_Administrator</flux:select.option>
+            <flux:select.option value="2">Administrator</flux:select.option>
+            <flux:select.option value="3">Doctor</flux:select.option>
+            <flux:select.option value="4">Nurse</flux:select.option>
         </flux:select>
 
 
