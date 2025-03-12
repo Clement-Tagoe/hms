@@ -16,7 +16,7 @@ class UsersIndex extends Component
 
     protected $queryString = [
         'role',
-        'search' => ['except' => '']
+        'search',
     ];
     
     public function mount()
@@ -27,7 +27,8 @@ class UsersIndex extends Component
     public function render()
     {
         $roles = Role::all();
-        
+        $total_users = User::all()->count();
+
         return view('livewire.admin.users-index', [
            'users' => User::with('role')
                 ->when($this->role && $this->role !== "All Roles", function ($query) use ($roles) {
@@ -38,6 +39,7 @@ class UsersIndex extends Component
                 })
                 ->latest()
                 ->paginate(10),
+            'total_users' => $total_users,
             'roles' => $roles,
         ]);
 

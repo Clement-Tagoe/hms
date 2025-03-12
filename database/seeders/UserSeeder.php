@@ -38,6 +38,38 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
+            'role_id' => 3,
+            'name' => 'Dr. Mike Tyson',
+            'email' => 'miketyson@gmail.com',
+            'contact' => '0245698712',
+            'password' => bcrypt('12345678'),
+        ]);
+
+        User::create([
+            'role_id' => 3,
+            'name' => 'Dr. Daniel Turkson',
+            'email' => 'danielturkson@gmail.com',
+            'contact' => '0261239547',
+            'password' => bcrypt('12345678'),
+        ]);
+
+        User::create([
+            'role_id' => 3,
+            'name' => 'Dr. Mariah Carey',
+            'email' => 'mariahcarey@gmail.com',
+            'contact' => '0244321965',
+            'password' => bcrypt('12345678'),
+        ]);
+
+        User::create([
+            'role_id' => 3,
+            'name' => 'Dr. Dwayne Johnson',
+            'email' => 'dwaynejohnson@gmail.com',
+            'contact' => '0249874123',
+            'password' => bcrypt('12345678'),
+        ]);
+
+        User::create([
             'role_id' => 4,
             'name' => 'Abigail Smith',
             'email' => 'abigailsmith@gmail.com',

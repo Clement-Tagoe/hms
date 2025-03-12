@@ -2,11 +2,12 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\User;
 use Livewire\Component;
 use Illuminate\Validation\Rules;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Session;
 
 
 class CreateUser extends Component
@@ -40,7 +41,9 @@ class CreateUser extends Component
 
         event(new Registered((User::create($validated))));
 
-        $this->redirect(route('admin.users', absolute: false), navigate: true);
+        Session::flash('success_message', 'User created successfully!');
+
+        $this->redirectRoute('admin.users', absolute: false, navigate: true);
     }
 
     public function render()

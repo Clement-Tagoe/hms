@@ -19,7 +19,7 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group heading="Clinic" class="grid">
-                    <flux:navlist.item icon="user-circle" :href="route('dashboard')" :current="request()->routeIs('')" wire:navigate>{{ __('Patients') }}</flux:navlist.item>
+                    <flux:navlist.item icon="user-circle" :href="route('patients.index')" :current="request()->routeIs('')" wire:navigate>{{ __('Patients') }}</flux:navlist.item>
                     <flux:navlist.item icon="document-plus" :href="route('dashboard')" :current="request()->routeIs('')" wire:navigate>{{ __('Treatments') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
@@ -142,6 +142,12 @@
         </flux:header>
 
         {{ $slot }}
+
+    
+        @if (session('success_message'))
+                <x-general-action-message redirect="true" messageToDisplay="{{ (session('success_message')) }}"/>
+        @endif
+        
 
         @fluxScripts
     </body>

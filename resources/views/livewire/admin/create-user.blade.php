@@ -98,8 +98,8 @@
         
         
 
-        <div class="flex w-3xl items-center justify-end">
-            <flux:button type="submit" variant="primary" class="w-full">
+        <div class="flex w-3xl items-center md:justify-end">
+            <flux:button type="submit" variant="primary" class="w-1/2 md:w-full">
                 {{ __('Create New User') }}
             </flux:button>
         </div>

@@ -4,7 +4,7 @@
     <div class="flex flex-col space-y-3 md:space-y-0 md:flex-row py-4 justify-between">
         <div class="flex space-x-2 items-center">
             <flux:icon.users />
-            <h3 class="font-bold text-lg">{{$users->count()}}</h3>
+            <h3 class="font-bold text-lg">{{ $total_users }}</h3>
             <p class="text-gray-400">Total users</p>  
         </div>
 
@@ -66,4 +66,6 @@
             </table>
         </div>
     </div>
+
+    {{ $users->links() }}
 </section>
