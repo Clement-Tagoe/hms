@@ -41,7 +41,7 @@ class Patient extends Model
         return $this->hasOne(Vital::class)->latestOfMany();
     }
 
-    public function treatment(): HasMany
+    public function treatments(): HasMany
     {
         return $this->hasMany(treatment::class);
     }

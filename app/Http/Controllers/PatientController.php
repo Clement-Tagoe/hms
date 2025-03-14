@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vital;
 use App\Models\Patient;
+use App\Models\Treatment;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -36,8 +38,14 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
+        $treatments = Treatment::with('user')->whereBelongsTo($patient)->latest();
+        $vitals = Vital::whereBelongsTo($patient)->latest();
+
         return view('patients.show', [
             'patient' => $patient,
+            'treatments' => $treatments->paginate(5),
+            'vitals' => $vitals->paginate(5),
+            'latestVital' => $patient->latestVital,
         ]);
     }
 
